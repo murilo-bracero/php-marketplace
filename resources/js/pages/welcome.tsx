@@ -9,6 +9,7 @@ type Product = {
     description: string;
     price: number;
     external_id: string;
+    image_url: string;
 };
 
 export default function Welcome() {
@@ -86,15 +87,16 @@ export default function Welcome() {
                     </main>
                 </div>
                 <div className="hidden h-14.5 lg:block"></div>
-                <article className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <article className="grid grid-cols-1 gap-4 pt-4 md:grid-cols-2 lg:grid-cols-5 lg:gap-6 lg:pt-0">
                     {products?.map((product) => (
-                        <Card className="rounded-xl">
-                            <CardHeader className="px-10 pt-8 pb-0 text-center">
+                        <Card key={product.external_id} className="rounded-xl py-0">
+                            <img className="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="something" />
+                            <CardHeader className="flex-1 px-10 pt-8 pb-0 text-center">
                                 <CardTitle className="text-xl">{product.name}</CardTitle>
                                 <CardDescription>{product.description}</CardDescription>
                             </CardHeader>
                             <CardContent className="px-10 py-8">
-                                <p className="text-gray-200">{product.price}</p>
+                                <p className="text-white">EUR {product.price}</p>
                             </CardContent>
                         </Card>
                     ))}

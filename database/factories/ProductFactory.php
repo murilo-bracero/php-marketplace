@@ -1,13 +1,13 @@
 <?php
-
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class ProductFactory extends Factory
 {
+
+    protected $model = \App\Products\Models\Product::class;
+
     /**
      * Define the model's default state.
      *
@@ -16,9 +16,10 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->word(). " ". fake()->colorName(),
+            'name'        => fake()->word() . " " . fake()->colorName(),
             'description' => fake()->paragraph(),
-            'price' => fake()->randomFloat(2, 1, 100),
+            'price'       => fake()->randomFloat(2, 1, 100),
+            'image_url'   => fake()->imageUrl(),
         ];
     }
 }

@@ -1,18 +1,18 @@
 <?php
-
 namespace App\Products\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Product extends Model {
+class Product extends Model
+{
     use HasFactory;
 
     protected static function booted(): void
     {
         static::creating(function (Model $model) {
-            if(empty($model->external_id)) {
+            if (empty($model->external_id)) {
                 $model->external_id = Str::uuid();
             }
         });
@@ -22,5 +22,11 @@ class Product extends Model {
         'name',
         'description',
         'price',
+        'image_url',
     ];
+
+    protected static function newFactory()
+    {
+        return \Database\Factories\ProductFactory::new ();
+    }
 }
