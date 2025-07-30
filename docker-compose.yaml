@@ -12,6 +12,22 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  migrations:
+    build:
+      context: .
+      dockerfile: ./docker/migrations.Dockerfile
+    environment:
+      # Ensure these match your .env or are passed directly
+      DB_CONNECTION: pgsql # Explicitly set connection type
+      DB_HOST: db.phpmarketplace.local
+      DB_PORT: 5432
+      DB_DATABASE: phpmarketplace
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+    networks:
+      php-marketplace-network:
+    restart: "no"
+
 networks:
   php-marketplace-network:
     driver: bridge
