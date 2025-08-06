@@ -25,6 +25,11 @@ class Product extends Model
         'image_url',
     ];
 
+    public function stock()
+    {
+        return $this->hasOne(Stock::class);
+    }
+
     protected static function newFactory()
     {
         return \Database\Factories\ProductFactory::new ();

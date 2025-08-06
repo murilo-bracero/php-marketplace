@@ -11,6 +11,10 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      php-marketplace-network:
+        aliases:
+          - db.phpmarketplace.local
 
   migrations:
     build:
@@ -24,6 +28,17 @@ services:
       DB_DATABASE: phpmarketplace
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
+    networks:
+      php-marketplace-network:
+    restart: "no"
+
+  pgadmin:
+    image: dpage/pgadmin4:8.4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@phpmarketplace.com
+      - PGADMIN_DEFAULT_PASSWORD=supersecret123
+    ports:
+      - "5050:80"
     networks:
       php-marketplace-network:
     restart: "no"

@@ -31,6 +31,10 @@ export interface SharedData {
     [key: string]: unknown;
 }
 
+export type ProductData = {
+    product: Product;
+} & SharedData;
+
 export interface User {
     id: number;
     name: string;
@@ -41,3 +45,12 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+
+export type Product = {
+    id: number;
+    name: string;
+    description: string;
+    price: number;
+    imageUrl: string;
+    isInStock: boolean;
+};

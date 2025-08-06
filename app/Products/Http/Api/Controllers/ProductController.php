@@ -1,6 +1,7 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Products\Http\Api\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Products\Dto\ProductQuery;
 use App\Products\Services\ProductService;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class ProductController extends Controller
 
     }
 
-    public function index(Request $request): Response
+    public function getProducts(Request $request): Response
     {
         $size = $request->input('size', 10);
         $page = $request->input('page', 0);
